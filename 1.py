@@ -20,13 +20,12 @@ class NeuralNetwork:
     def train(self, weight, height, y_true):
         TrainingConst = 0.01
         for epoch in range(5000):
-            y_predicted = []
             for i in range(len(weight)):
                 # считается для одного примера
                 h1 = sigmoid(weight[i] * self.w1 + height[i] * self.w3 + self.b1)
                 h2 = sigmoid(weight[i] * self.w2 + height[i] * self.w4 + self.b2)
                 y_pred = sigmoid(h1 * self.w5 + h2 * self.w6 + self.b3)
-                y_predicted.append(y_pred.item())
+
                 dl_dypred = 2 * (y_pred - y_true[i])
                 dypred_dh1 = (y_pred * (1 - y_pred)) * (self.w5)
                 dypred_dh2 = (y_pred * (1 - y_pred)) * (self.w6)
