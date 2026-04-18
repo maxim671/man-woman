@@ -59,7 +59,7 @@ W1, W2 = train(X, W1, W2, B1, B2, y_true)
 def predict(weight, height):
     weight = (weight - weight_raw.mean()) / weight_raw.std()
     height = (height - height_raw.mean()) / height_raw.std()
-    X = np.array([[weight, height]])   # форма (1,2)
+    X = np.array([[weight, height]])
     return sigmoid(sigmoid(X @ W1 + B1) @ W2 + B2).item()
 
 print(predict(80, 180))
