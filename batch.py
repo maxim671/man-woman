@@ -21,7 +21,7 @@ def train(X, W1, W2, B1, B2, Y_true, learning_rate = 0.01):
         Z = sigmoid(H)
         S = Z @ W2 + B2
         Y = sigmoid(S)
-        L = ((Y_true - Y)**2) / 2
+        L = np.linalg.norm(Y_true - Y) / X.shape[0]
 
 
         dl_dy_pred = -1 * (Y_true - Y)
@@ -60,9 +60,11 @@ def predict(weight, height):
     weight = (weight - weight_raw.mean()) / weight_raw.std()
     height = (height - height_raw.mean()) / height_raw.std()
     X = np.array([[weight, height]])   # форма (1,2)
-    return sigmoid(sigmoid(X @ W1 + B1) @ W2 + B2).item()
+    if sigmoid(sigmoid(X @ W1 + B1) @ W2 + B2).item() > 0.5:
+        return "Женщина"
+    return "Мужчина"
 
-print(predict(80, 180))
+print(predict(87, 175))
 
 
 

@@ -79,5 +79,5 @@ height = (height_neobr - height_neobr.mean()) / height_neobr.std()
 neuron = NeuralNetwork()
 neuron.train(weight, height, y_true)
 
-print(neuron.predict(0,175))
+print(neuron.predict(70,180))
 
